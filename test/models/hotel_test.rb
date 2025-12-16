@@ -1,8 +1,13 @@
 require "test_helper"
 
 class HotelTest < ActiveSupport::TestCase
-  test "should not save hotel without name" do
-    hotel = Hotel.new
-    assert_not hotel.save, "Saved the hotel without a name"
+  test "hotel is valid with name and location" do
+    hotel = Hotel.new(name: "Test Hotel", location: "Dublin")
+    assert hotel.save
+  end
+
+  test "hotel invalid without name" do
+    hotel = Hotel.new(location: "Dublin")
+    assert_not hotel.save
   end
 end

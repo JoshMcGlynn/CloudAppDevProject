@@ -1,6 +1,18 @@
 {% extends "base.html" %}
 {% block content %}
 <h1>Hotels</h1>
+<nav>
+    {% if session.get("user_id") %}
+        <span>Logged in</span>
+        <form action="/logout" method="post" style="display:inline;">
+            <button type="submit">Logout</button>
+        </form>
+    {% else %}
+        <a href="/login">Login</a>
+        <a href="/register">Register</a>
+    {% endif %}
+</nav>
+<hr>
 
 <a href="{{url_for('hotel_create')}}" class="btn btn-primary mb-3">New Hotel</a>
 

@@ -4,4 +4,8 @@ Rails.application.routes.draw do
   resources :hotels do
     resources :rooms
   end
+
+  #authentication routes (API)
+  resources :users, only: [:create]
+  post "/login", to: "sessions#create"
 end

@@ -1,5 +1,6 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, session 
 import requests
+from functools import wraps
 
 app = Flask(__name__)
 app.secret_key = "dev-secret-key" 
@@ -33,7 +34,65 @@ def home():
     return redirect(url_for("hotels_list"))
 
 
+#Register
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    if request.method == "POST":
+        data = {
+            "user": {
+                "email": request.form["email"],
+                "password": request.form["password"],
+                "password_confirmation": request.form["password_confirmation"]
+            }
+        }
+
+        r = requests.post("http://localhost:3000/users", json=data)
+
+        if r.status_code == 201:
+            return redirect(url_for("login"))
+        else:
+            return render_template("register.html", error="Registration failed")
+        
+    return render_template("register.html")
+
+
+#Login 
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        data = {
+            "email": request.form["email"],
+            "password": request.form["password"]
+        }
+
+        r = requests.post("http://localhost:3000/login", json=data)
+
+        if r.status_code == 200:
+            session["user"] = data["email"]
+            return redirect(url_for("hotels_list"))
+        else:
+            return render_template("login.html", error="Invalid credentials")
+        
+    return render_template("login.html")
+
+
+#Logout
+@app.route("/logout", methods=["POST"])
+def logout():
+    session.clear()
+    return redirect(url_for("login"))
+
+
 #Hotels
+
+def login_required(f):
+    @wraps(f)
+    def wrapper(*args, **kwargs):
+        if "user" not in session:
+            return redirect(url_for("login"))
+        return f(*args, **kwargs)
+    return wrapper
+
 
 @app.route("/hotels")
 def hotels_list():
@@ -42,6 +101,7 @@ def hotels_list():
 
 
 @app.route("/hotels/new", methods=["GET", "POST"])
+@login_required
 def hotel_create():
     if request.method == "POST":
         payload = {
@@ -75,6 +135,7 @@ def hotel_detail(hotel_id):
     return render_template("hotel_detail.html", hotel=hotel, rooms=rooms)
 
 @app.route("/hotelS/<int:hotel_id>/edit", methods=["GET", "POST"])
+@login_required
 def hotel_edit(hotel_id):
     hotel = api_get(f"/hotels/{hotel_id}.json")
 
@@ -99,6 +160,7 @@ def hotel_edit(hotel_id):
 
 
 @app.route("/hotels/<int:hotel_id>/delete", methods=["POST"])
+@login_required
 def hotel_delete(hotel_id):
     resp = api_delete(f"/hotels/{hotel_id}")
     if resp.ok:
@@ -111,6 +173,7 @@ def hotel_delete(hotel_id):
 #Rooms
 
 @app.route("/hotels/<int:hotel_id>/rooms/new", methods=["GET", "POST"])
+@login_required
 def room_create(hotel_id):
     hotel = api_get(f"/hotels/{hotel_id}.json")
     if request.method == "POST":
@@ -138,6 +201,7 @@ def room_create(hotel_id):
 
 
 @app.route("/hotels/<int:hotel_id>/rooms/<int:room_id>/edit", methods=["GET", "POST"])
+@login_required
 def room_edit(hotel_id, room_id):
     hotel=api_get(f"/hotels/{hotel_id}.json")
     room = api_get(f"/hotels/{hotel_id}/rooms/{room_id}.json")
@@ -161,6 +225,7 @@ def room_edit(hotel_id, room_id):
 
 
 @app.route("/hotels/<int:hotel_id>/rooms/<int:room_id>/delete", methods=["POST"])
+@login_required
 def room_delete(hotel_id, room_id):
     resp = api_delete(f"/hotels/{hotel_id}/rooms/{room_id}")
     if resp.ok:
