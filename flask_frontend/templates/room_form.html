@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{action}} Room</h1>
+
+<form method="POST">
+    <div class="mb-3">
+        <label for="number" class="form-label">Number</label>
+        <input id="number" name="number" class="form-control" value="{{room.number if room}}">
+    </div>
+
+    <div class="mb-3">
+        <label for="type" class="form-label">Room Type</label>
+        <input id="type" name="room_type" class="form-control" value="{{room.room_type if room}}">
+    </div>
+
+    <div class="mb-3">
+        <label for="price" class="form-label">Price</label>
+        <input id="price" name="price" type="number" step="0.01" class="form-control" value="{{room.price if room}}">
+    </div>
+
+    <button class="btn btn-success">{{action}}</button>
+    <a href="{{url_for('hotel_detail', hotel_id=hotel.id)}}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

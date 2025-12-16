@@ -1,0 +1,72 @@
+  [1m[35m (12.9ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (3.5ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "hotels" DISABLE TRIGGER ALL;ALTER TABLE "rooms" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[36mFixtures Load (4.0ms)[0m  [1m[31mDELETE FROM "hotels";
+DELETE FROM "rooms";
+INSERT INTO "hotels" ("id", "created_at", "description", "location", "name", "rating", "updated_at") VALUES (980190962, '2025-11-09 03:02:35.254007', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2025-11-09 03:02:35.254007'), (298486374, '2025-11-09 03:02:35.254007', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2025-11-09 03:02:35.254007');
+INSERT INTO "rooms" ("id", "created_at", "hotel_id", "number", "price", "room_type", "updated_at") VALUES (980190962, '2025-11-09 03:02:35.276255', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2025-11-09 03:02:35.276255'), (298486374, '2025-11-09 03:02:35.276255', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2025-11-09 03:02:35.276255')[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "hotels" DISABLE TRIGGER ALL;ALTER TABLE "rooms" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[36mFixtures Load (1.1ms)[0m  [1m[31mDELETE FROM "hotels";
+DELETE FROM "rooms";
+INSERT INTO "hotels" ("id", "created_at", "description", "location", "name", "rating", "updated_at") VALUES (980190962, '2025-11-09 03:02:35.438229', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2025-11-09 03:02:35.438229'), (298486374, '2025-11-09 03:02:35.438229', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2025-11-09 03:02:35.438229');
+INSERT INTO "rooms" ("id", "created_at", "hotel_id", "number", "price", "room_type", "updated_at") VALUES (980190962, '2025-11-09 03:02:35.438296', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2025-11-09 03:02:35.438296'), (298486374, '2025-11-09 03:02:35.438296', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2025-11-09 03:02:35.438296')[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "hotels" DISABLE TRIGGER ALL;ALTER TABLE "rooms" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[36mFixtures Load (1.0ms)[0m  [1m[31mDELETE FROM "hotels";
+DELETE FROM "rooms";
+INSERT INTO "hotels" ("id", "created_at", "description", "location", "name", "rating", "updated_at") VALUES (980190962, '2025-11-09 03:02:35.458476', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2025-11-09 03:02:35.458476'), (298486374, '2025-11-09 03:02:35.458476', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2025-11-09 03:02:35.458476');
+INSERT INTO "rooms" ("id", "created_at", "hotel_id", "number", "price", "room_type", "updated_at") VALUES (980190962, '2025-11-09 03:02:35.458544', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2025-11-09 03:02:35.458544'), (298486374, '2025-11-09 03:02:35.458544', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2025-11-09 03:02:35.458544')[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "hotels" DISABLE TRIGGER ALL;ALTER TABLE "rooms" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[36mFixtures Load (1.0ms)[0m  [1m[31mDELETE FROM "hotels";
+DELETE FROM "rooms";
+INSERT INTO "hotels" ("id", "created_at", "description", "location", "name", "rating", "updated_at") VALUES (980190962, '2025-11-09 03:02:35.477128', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2025-11-09 03:02:35.477128'), (298486374, '2025-11-09 03:02:35.477128', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2025-11-09 03:02:35.477128');
+INSERT INTO "rooms" ("id", "created_at", "hotel_id", "number", "price", "room_type", "updated_at") VALUES (980190962, '2025-11-09 03:02:35.477192', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2025-11-09 03:02:35.477192'), (298486374, '2025-11-09 03:02:35.477192', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2025-11-09 03:02:35.477192')[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "hotels" DISABLE TRIGGER ALL;ALTER TABLE "rooms" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[36mFixtures Load (0.9ms)[0m  [1m[31mDELETE FROM "hotels";
+DELETE FROM "rooms";
+INSERT INTO "hotels" ("id", "created_at", "description", "location", "name", "rating", "updated_at") VALUES (980190962, '2025-11-09 03:02:35.493701', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2025-11-09 03:02:35.493701'), (298486374, '2025-11-09 03:02:35.493701', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2025-11-09 03:02:35.493701');
+INSERT INTO "rooms" ("id", "created_at", "hotel_id", "number", "price", "room_type", "updated_at") VALUES (980190962, '2025-11-09 03:02:35.493761', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2025-11-09 03:02:35.493761'), (298486374, '2025-11-09 03:02:35.493761', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2025-11-09 03:02:35.493761')[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "hotels" DISABLE TRIGGER ALL;ALTER TABLE "rooms" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[36mFixtures Load (1.0ms)[0m  [1m[31mDELETE FROM "hotels";
+DELETE FROM "rooms";
+INSERT INTO "hotels" ("id", "created_at", "description", "location", "name", "rating", "updated_at") VALUES (980190962, '2025-11-09 03:02:35.516323', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2025-11-09 03:02:35.516323'), (298486374, '2025-11-09 03:02:35.516323', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2025-11-09 03:02:35.516323');
+INSERT INTO "rooms" ("id", "created_at", "hotel_id", "number", "price", "room_type", "updated_at") VALUES (980190962, '2025-11-09 03:02:35.516399', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2025-11-09 03:02:35.516399'), (298486374, '2025-11-09 03:02:35.516399', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2025-11-09 03:02:35.516399')[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "hotels" DISABLE TRIGGER ALL;ALTER TABLE "rooms" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[36mFixtures Load (0.9ms)[0m  [1m[31mDELETE FROM "hotels";
+DELETE FROM "rooms";
+INSERT INTO "hotels" ("id", "created_at", "description", "location", "name", "rating", "updated_at") VALUES (980190962, '2025-11-09 03:02:35.536092', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2025-11-09 03:02:35.536092'), (298486374, '2025-11-09 03:02:35.536092', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2025-11-09 03:02:35.536092');
+INSERT INTO "rooms" ("id", "created_at", "hotel_id", "number", "price", "room_type", "updated_at") VALUES (980190962, '2025-11-09 03:02:35.536156', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2025-11-09 03:02:35.536156'), (298486374, '2025-11-09 03:02:35.536156', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2025-11-09 03:02:35.536156')[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "hotels" DISABLE TRIGGER ALL;ALTER TABLE "rooms" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[36mFixtures Load (0.9ms)[0m  [1m[31mDELETE FROM "hotels";
+DELETE FROM "rooms";
+INSERT INTO "hotels" ("id", "created_at", "description", "location", "name", "rating", "updated_at") VALUES (980190962, '2025-11-09 03:02:35.553710', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2025-11-09 03:02:35.553710'), (298486374, '2025-11-09 03:02:35.553710', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2025-11-09 03:02:35.553710');
+INSERT INTO "rooms" ("id", "created_at", "hotel_id", "number", "price", "room_type", "updated_at") VALUES (980190962, '2025-11-09 03:02:35.553771', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2025-11-09 03:02:35.553771'), (298486374, '2025-11-09 03:02:35.553771', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2025-11-09 03:02:35.553771')[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "hotels" DISABLE TRIGGER ALL;ALTER TABLE "rooms" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[36mFixtures Load (1.2ms)[0m  [1m[31mDELETE FROM "hotels";
+DELETE FROM "rooms";
+INSERT INTO "hotels" ("id", "created_at", "description", "location", "name", "rating", "updated_at") VALUES (980190962, '2025-11-09 03:02:35.575517', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2025-11-09 03:02:35.575517'), (298486374, '2025-11-09 03:02:35.575517', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2025-11-09 03:02:35.575517');
+INSERT INTO "rooms" ("id", "created_at", "hotel_id", "number", "price", "room_type", "updated_at") VALUES (980190962, '2025-11-09 03:02:35.575637', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2025-11-09 03:02:35.575637'), (298486374, '2025-11-09 03:02:35.575637', DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2025-11-09 03:02:35.575637')[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
