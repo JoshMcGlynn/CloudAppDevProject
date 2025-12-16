@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{hotel.name}}</h1>
+
+<p><strong>Location:</strong>{{hotel.location}}</p>
+<p><strong>Rating:</strong>{{hotel.rating}}</p>
+<p><strong>Description:</strong>{{hotel.description}}</p>
+
+<a href="{{url_for('hotel_edit', hotel_id=hotel.id)}}" class="btn btn-warning mb-3">Edit Hotel</a>
+<a href="{{url_for('hotels_list')}}" class="btn btn-secondary mb-3">Back to Hotels</a>
+
+<hr>
+
+<h2>Rooms</h2>
+
+<a href="{{url_for('room_create', hotel_id=hotel.id)}}" class="btn btn-primary mb-3">Add Room</a>
+
+{% if rooms %}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Number</th>
+            <th>Type</th>
+            <th>Price</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for room in rooms %}
+        <tr>
+            <td>{{room.number}}</td>
+            <td>{{room.room_type}}</td>
+            <td>€{{room.price}}</td>
+            <td class="text-end">
+                <a href="{{url_for('room_edit', hotel_id=hotel.id, room_id=room.id)}}" class="btn btn-sm btn-warning">Edit</a>
+                <form action="{{url_for('room_delete', hotel_id=hotel.id, room_id=room.id)}}" method="POST" class="d-inline">
+                    <button class="btn btn-sm btn-danger" onclick="return confirm('Delete this room?')">Delete</button>
+                </form>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No rooms yet for this hotel.</p>
+{% endif %}
+{% endblock %}
