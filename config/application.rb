@@ -17,6 +17,10 @@ module HotelManagement
     config.autoload_lib(ignore: %w[assets tasks])
 
     config.active_job.queue_adapter = :async
+
+    config.generators do |g|
+      g.queue_adapter nil
+      
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
