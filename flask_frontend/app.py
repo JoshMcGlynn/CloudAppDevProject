@@ -5,25 +5,25 @@ from functools import wraps
 app = Flask(__name__)
 app.secret_key = "dev-secret-key" 
 
-API_BASE = "http://localhost:3000"
+API_BASE_URL = "https://cloudappdevproject.onrender.com"
 
 #Helpers
 
 def api_get(path):
-    r = requests.get(f"{API_BASE}{path}")
+    r = requests.get(f"{API_BASE_URL}{path}")
     r.raise_for_status()
     return r.json()
 
 def api_post(path, payload):
-    r = requests.post(f"{API_BASE}{path}", json=payload)
+    r = requests.post(f"{API_BASE_URL}{path}", json=payload)
     return r
 
 def api_put(path, payload):
-    r = requests.put(f"{API_BASE}{path}", json=payload)
+    r = requests.put(f"{API_BASE_URL}{path}", json=payload)
     return r
 
 def api_delete(path):
-    r = requests.delete(f"{API_BASE}{path}")
+    r = requests.delete(f"{API_BASE_URL}{path}")
     return r
 
 
@@ -46,7 +46,7 @@ def register():
             }
         }
 
-        r = requests.post("http://localhost:3000/users", json=data)
+        r = requests.post(f"{API_BASE_URL}/users", json=data)
 
         if r.status_code == 201:
             return redirect(url_for("login"))
@@ -65,7 +65,7 @@ def login():
             "password": request.form["password"]
         }
 
-        r = requests.post("http://localhost:3000/login", json=data)
+        r = requests.post(f"{API_BASE_URL}/login", json=data)
 
         if r.status_code == 200:
             session["user"] = data["email"]
@@ -134,7 +134,7 @@ def hotel_detail(hotel_id):
     rooms = api_get(f"/hotels/{hotel_id}/rooms.json")
     return render_template("hotel_detail.html", hotel=hotel, rooms=rooms)
 
-@app.route("/hotelS/<int:hotel_id>/edit", methods=["GET", "POST"])
+@app.route("/hotels/<int:hotel_id>/edit", methods=["GET", "POST"])
 @login_required
 def hotel_edit(hotel_id):
     hotel = api_get(f"/hotels/{hotel_id}.json")
@@ -236,4 +236,4 @@ def room_delete(hotel_id, room_id):
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
